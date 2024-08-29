@@ -13,30 +13,33 @@
 
 ## 安装与使用
 **安装依赖**
+
 首先，克隆项目仓库并安装依赖：
 ```python
 pip install -r requirements.txt
 ```
 **使用**
+
 在 `main.py` 中修改文件夹路径以及需要修改的字段，然后运行 `main.py`
 
 ```python
-modifications = {
-    'add': {'author': 'John Doe'},  # 添加新字段 'author'，其值为 'John Doe'
-    'delete': ['outdated_field'],  # 删除 'outdated_field' 字段
-    'nest': {
-        'featured_image': {'new_key': 'cover', 'subkey': 'image', 'additional': {'alt': ''}},
-        # 将 'featured_image' 字段嵌套到新的 'cover' 字段下，'cover' 下包含 'image' 子字段，值为原始 `featured_image` 值，并附加 'alt' 子字段
-    },
-    'unnest': {
-        'link': {'subkey': 'bio', 'new_key': 'link'},
-        # 将 'link' 字段下的 'bio' 子字段提升为顶级 'link' 字段，或者将其移至另一个新键
-    },
-    'rename': {'abbrlink': 'slug'},  # 将 'abbrlink' 字段重命名为 'slug'
-    'modify': {'title': 'New Title'},  # 修改 'title' 字段的值为 'New Title'
-}
+def main():
+    folder_path = r".\test"  # 文件路径修改
+    modifications = {
+        'add': {'author': 'John Doe'},
+        'delete': ['outdated_field'],
+        'nest': {
+            'featured_image': {'new_key': 'cover', 'subkey': 'image', 'additional': {'alt': ''}},
+        },
+        'unnest': {
+            'link': {'subkey': 'bio', 'new_key': 'link'},
+        },
+        'rename': {'abbrlink': 'slug'},
+        'modify': {'title': 'New Title'},
+    }
+    convert_frontmatter(folder_path, modifications)
 ```
-### 使用说明
+### 字段说明
 - 添加字段 (add): `add` 键指定要添加的新字段及其值。例如，'add': {'author': 'John Doe'} 将在 `frontmatter` 中添加一个名为 `author` 的字段，值为 John Doe。
 - 删除字段 (delete): 指定需要从 `frontmatter` 中删除的字段列表。例如，`'delete': ['outdated_field']` 将删除名为 `outdated_field` 的字段。
 - 嵌套字段 (nest): `nest` 键将现有字段嵌套到新的字段下。例如，`'nest': {'featured_image': {'new_key': 'cover', 'subkey': 'image', 'additional': {'alt': ''}}}` 会将 `featured_image` 字段嵌套到 `cover` 字段下，并且 `cover` 字段下会包含 `image` 子字段，`image`的值为原始 `featured_image` 的值，同时附加一个 `alt` 子字段。
