@@ -14,7 +14,7 @@
 ## 安装与使用
 **安装依赖**
 
-首先，克隆项目仓库并安装依赖：
+下载后安装依赖：
 ```python
 pip install -r requirements.txt
 ```
