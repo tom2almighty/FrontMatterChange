@@ -40,8 +40,8 @@ def main():
     convert_frontmatter(folder_path, modifications)
 ```
 ### 字段说明
-- **添加字段 (add):** `add` 键指定要添加的新字段及其值。例如，'add': {'author': 'John Doe'} 将在 `frontmatter` 中添加一个名为 `author` 的字段，值为 John Doe。
-- **删除字段 (delete): **指定需要从 `frontmatter` 中删除的字段列表。例如，`'delete': ['outdated_field']` 将删除名为 `outdated_field` 的字段。
+- **添加字段 (add):** `add` 键指定要添加的新字段及其值。例如，`'add': {'author': 'John Doe'}` 将在 `frontmatter` 中添加一个名为 `author` 的字段，值为 `John Doe`。
+- **删除字段 (delete):** 指定需要从 `frontmatter` 中删除的字段列表。例如，`'delete': ['outdated_field']` 将删除名为 `outdated_field` 的字段。
 - **嵌套字段 (nest):** `nest` 键将现有字段嵌套到新的字段下。例如，`'nest': {'featured_image': {'new_key': 'cover', 'subkey': 'image', 'additional': {'alt': ''}}}` 会将 `featured_image` 字段嵌套到 `cover` 字段下，并且 `cover` 字段下会包含 `image` 子字段，`image`的值为原始 `featured_image` 的值，同时附加一个 `alt` 子字段。
 - **解嵌套字段 (unnest):** `unnest` 键将嵌套的字段提升为顶级字段或移动到另一个键下。例如，`'unnest': {'link': {'subkey': 'bio', 'new_key': 'link'}}` 会将 `link` 字段下的 `bio` 子字段提升为顶级 `link` 字段，或移动至新的键下，值保持不变。
 - **重命名字段 (rename):**  `rename` 键可以将字段重命名。例如，`'rename': {'abbrlink': 'slug'}` 将 `abbrlink` 字段重命名为 `slug`。
